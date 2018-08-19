@@ -1,30 +1,29 @@
 package graphic;
 
-import java.awt.BorderLayout;
 import java.awt.GridLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import mundo.Processor;
+
 public class MainWindow extends JFrame {
 
 	PanelReceiver pannelOne;
-	PanelReceiverTwo pannelTwo;
 	private JPanel assistant;
+	Processor logic;
+	
 	
 	public MainWindow() {
 		// TODO Auto-generated constructor stub
-		assistant=new JPanel(new BorderLayout());
+		assistant=new JPanel(new GridLayout());
 		pannelOne=new PanelReceiver(this);
-		pannelTwo=new PanelReceiverTwo(this);
-		
+		logic=new Processor();
 		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
-		assistant.add(pannelOne,BorderLayout.CENTER);
-		assistant.add(pannelTwo,BorderLayout.NORTH);
+		assistant.add(pannelOne);
 		add(assistant);
-		
 		pack();
 	}
 
@@ -33,5 +32,15 @@ public class MainWindow extends JFrame {
 		MainWindow window=new MainWindow();
 
 	}
+	public void generateAutomatic() {
+		logic.GenerateNumber((int)((Math.random()*111)+1));
+		visualizeArrangement();
+	}
+	
+	public void visualizeArrangement() {
+		pannelOne.getInput().setText(logic.convertArrangement());
+		
+	}
+
 
 }
