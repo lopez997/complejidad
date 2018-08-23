@@ -13,11 +13,17 @@ import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
-public class PanelReceiver extends JPanel implements ActionListener, ItemListener{
+public class PanelReceiver extends JPanel implements ActionListener{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	MainWindow main;
 	
 	private JPanel assistant;
@@ -25,20 +31,26 @@ public class PanelReceiver extends JPanel implements ActionListener, ItemListene
 	
 	public static final String GENERAR="generar";
 	public static final String ORDENAR="ordenar";
+	public static final String GENERAR_AUTO="generarauto";
 	
 	
+	
+	private String listenerCheck=" ";
+	private long intervaleOne;
+	private long intervaleTwo;
 	
 	private JLabel messageOne;
 	private JLabel messageTwo;
 	
-	
 	private JButton generate;
 	private JButton order;
+	private JButton generateTwo;
+	
 	
 	private JTextField interval;
 	private JTextField percentageOrder;
 	private JTextField quantityNum;
-	private JTextField input;
+	private JTextArea input;
 	
 	private JRadioButton one;
 	private JRadioButton two;
@@ -49,15 +61,12 @@ public class PanelReceiver extends JPanel implements ActionListener, ItemListene
 	public PanelReceiver(MainWindow main) {
 		// TODO Auto-generated constructor stub
 		this.main=main;
-		
 		father=new JPanel(new BorderLayout());
-		
 		assistant=new JPanel(new GridLayout(6,2));
 		
 		 messageOne=new JLabel("Ingrese el total de numeros a generar: ");
 		 messageTwo=new JLabel("Ingrese el intervalo: ");
-		 input=new JTextField();
-
+		 input=new JTextArea();
 		 
 		 interval= new JTextField();
 		 percentageOrder= new JTextField();
@@ -74,26 +83,30 @@ public class PanelReceiver extends JPanel implements ActionListener, ItemListene
 		 group.add(three);
 		 group.add(four);
 		 
-		 one.addItemListener(this);
-		 one.setText(GENERAR);
-		 two.addItemListener(this);
-		 three.addItemListener(this);
-		 four.addItemListener(this);
+		 one.addActionListener(this);
+		 two.addActionListener(this);
+		 three.addActionListener(this);
+		 four.addActionListener(this);
 
-		 generate=new JButton("Generar auto.");
+		 generate=new JButton("Generar.");
 		 generate.setActionCommand(GENERAR);
 		 generate.addActionListener(this);
-
+		 
+		 generateTwo=new JButton("Generar Automatic");
+		 generateTwo.setActionCommand(GENERAR_AUTO);
+		 generateTwo.addActionListener(this);
+		 
 		 order=new JButton("Ordenar");
 		 order.setActionCommand(ORDENAR);
 		 order.addActionListener(this);
+		 order.setEnabled(false);
+		 
 		 setBorder(new TitledBorder("Panel Generador"));
 		 assistant.setBorder(new TitledBorder("Panel ordenamiento manual"));
 		 addItems();
 		 add(father);
 	}
 	public void addItems() {
-		
 		assistant.add(messageOne);
 		assistant.add(quantityNum);
 		assistant.add(messageTwo);
@@ -107,34 +120,60 @@ public class PanelReceiver extends JPanel implements ActionListener, ItemListene
 		assistant.add(aux);
 		assistant.add(generate);
 		assistant.add(order);
-		
-		
+		assistant.add(generateTwo);
 		father.add(assistant,BorderLayout.NORTH);
 		father.add(input,BorderLayout.CENTER);
-
-		
 		}
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getActionCommand().equals(GENERAR)) {
-			main.generateAutomatic();
+			try {
+				main.generateArragement();
+				order.setEnabled(true);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}else if(e.getActionCommand().equals(ORDENAR)) {
-			
+				main.administrarion();
+		}else if(e.getActionCommand().equals(GENERAR_AUTO)) {
+			main.generateAutomatic();
+			order.setEnabled(true);
+		}else if(e.getActionCommand().equals("Valores ordenados")) {
+			listenerCheck="ordenado";
+		}else if(e.getActionCommand().equals("Valores ordenados inversamente")) {
+			listenerCheck="nordenado";
+		}else if(e.getActionCommand().equals("Orden aleatorio")) {
+			listenerCheck="aleatorio";
+		}else if(e.getActionCommand().equals("% de desorden")) {
+			listenerCheck="porcentaje";
 		}
-		
 	}
-	@Override
-	public void itemStateChanged(ItemEvent e) {
-		// TODO Auto-generated method stub
-		if(e.getItem().equals(one)) {
-		System.out.println("Listo");
-		}
+	
+	public String getStatus() {
+		return listenerCheck;
+	}
+	
+	public void integer() {
+		String message=interval.getText();
+		String arr[]=message.split("-");
+		intervaleOne=Integer.parseInt(arr[0]);
+		intervaleTwo=Integer.parseInt(arr[1]);
+	}
+	
+	public long getIntervalOne() {
+		return intervaleOne;
+	}
+	public long getIntervaleTwo() {
+		return intervaleTwo;
 	}
 	public MainWindow getMain() {
 		return main;
 	}
-	
+	public JTextArea getInput() {
+		return input;
+	}
 	public void setMain(MainWindow main) {
 		this.main = main;
 	}
@@ -177,9 +216,6 @@ public class PanelReceiver extends JPanel implements ActionListener, ItemListene
 	public JTextField getInterval() {
 		return interval;
 	}
-	public void setInterval(JTextField interval) {
-		this.interval = interval;
-	}
 	public JTextField getPercentageOrder() {
 		return percentageOrder;
 	}
@@ -192,41 +228,6 @@ public class PanelReceiver extends JPanel implements ActionListener, ItemListene
 	public void setQuantityNum(JTextField quantityNum) {
 		this.quantityNum = quantityNum;
 	}
-	public JTextField getInput() {
-		return input;
-	}
-	public void setInput(JTextField input) {
-		this.input = input;
-	}
-	public JRadioButton getOne() {
-		return one;
-	}
-	public void setOne(JRadioButton one) {
-		this.one = one;
-	}
-	public JRadioButton getTwo() {
-		return two;
-	}
-	public void setTwo(JRadioButton two) {
-		this.two = two;
-	}
-	public JRadioButton getThree() {
-		return three;
-	}
-	public void setThree(JRadioButton three) {
-		this.three = three;
-	}
-	public JRadioButton getFour() {
-		return four;
-	}
-	public void setFour(JRadioButton four) {
-		this.four = four;
-	}
-	public ButtonGroup getGroup() {
-		return group;
-	}
-	public void setGroup(ButtonGroup group) {
-		this.group = group;
-	}
+
 	
 }
