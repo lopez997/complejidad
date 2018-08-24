@@ -73,7 +73,15 @@ public class MainWindow extends JFrame {
 			shortArrangement();
 		}else if(pannelOne.getStatus().equals("nordenado")) {
 			shortArrangementInversely();
+		}else if(pannelOne.getStatus().equals("aleatorio")) {
+			int random=(int)(Math.random()*2)+1;
+			if(random==1) {
+				shortArrangement();
+			}else {
+				shortArrangementInversely();
+			}
 		}
+		
 	}	
 	
 	

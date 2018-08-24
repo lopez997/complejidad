@@ -1,5 +1,8 @@
 package mundo;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 public class Processor {
 	
 	private Box[] arrangement;
@@ -93,13 +96,47 @@ public class Processor {
 	        arrangement[i].setNumber(arrangement[j].getNumber());
 	        arrangement[j].setNumber(temp);
 	    }
+	  
+	  private void exchangePercentNumbers(double percent){
+		  
+		  double k= sortPercentage(percent);
+		  int pairs= (int) k/2;
+		  
+		  if(pairs%2==1){
+			  pairs= pairs-1;
+		  }
+		  
+		  int [] array= generateKPos(pairs);
+		  
+		  int i=0;
+		  while(i+1>array.length){
+			  exchangeNumbers(i, i+1);
+			  i=i+2;
+		  }
+		  
+		  
+		  
+	  }
+	  
+	  private int[] generateKPos(int k){
+		  int[] array= new int[k];
+		  ArrayList<Integer> list= new ArrayList<>();
+		  
+		  for(int i=0;i<arrangement.length; i++){
+			  list.set(i, i);
+		  }
+		  
+		  for(int j=0;j<k;j++){
+			  array[j]= list.get((int) ((Math.random()*list.size())+0));
+		  }
+		  return array;
+	  }
+	  
 	
-	  public void sortPercentage(double percentage) {
+	  public double sortPercentage(double percentage) {
 		  
-		  double k=arrangement.length*percentage;
-		  
-		  
-		  
+		  return arrangement.length*percentage;
+		   
 	  }	  
 	
 	public Box[] getArrangement() {

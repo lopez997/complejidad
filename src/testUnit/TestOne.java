@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import mundo.*;
 
-class TestOne {
+class TestOne implements {
 
 	public void addArrangement() {
 
