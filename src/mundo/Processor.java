@@ -113,11 +113,9 @@ public class Processor {
 			  exchangeNumbers(i, i+1);
 			  i=i+2;
 		  }
-		  
-		  
-		  
-	  }
-	  
+}
+
+	
 	  private int[] generateKPos(int k){
 		  int[] array= new int[k];
 		  ArrayList<Integer> list= new ArrayList<>();
