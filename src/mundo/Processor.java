@@ -40,8 +40,9 @@ public class Processor {
 	        int i = lowerIndex;
 	        int j = higherIndex;
 	        long pivot = arrangement[lowerIndex+(higherIndex-lowerIndex)/2].getNumber();
-	        
+
 	        while (i <= j) {
+
 	            while (arrangement[i].getNumber() > pivot) {
 	                i++;
 	            }
@@ -54,10 +55,10 @@ public class Processor {
 	                j--;
 	            }
 	        }
-	        if (lowerIndex > j)
-	            quickSort(lowerIndex, j);
-	        if (i > higherIndex)
-	            quickSort(i, higherIndex);
+	        if (lowerIndex < j)
+	            quickSortInversely(lowerIndex, j);
+	        if (i < higherIndex)
+	            quickSortInversely(i, higherIndex);
 	    }
 
 	 public void quickSort(int lowerIndex, int higherIndex) {

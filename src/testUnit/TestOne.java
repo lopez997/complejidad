@@ -38,7 +38,33 @@ class TestOne {
 			assertEquals(arrTest[i].getNumber(),test.getArrangement()[i].getNumber());
 			
 		}
+	}
+	
+
+	@Test
+	public void testShortTwo() {
+		Processor test=new Processor();
 		
+		Box[] arr=new Box[(int)(Math.random()*200)+5];
+		int j=arr.length-1;
+		for (int i = 0; i < arr.length; i++) {
+			arr[i]=new Box(j);
+			j--;
+		}
+
+		test.setArrangement(arr);
+		test.quickSort(0,arr.length-1);
+		
+		Box[] arrTest=new Box[arr.length];
+		for (int i = 0; i < arrTest.length; i++) {
+			arrTest[i]=new Box(i);
+	
+		}
+	
+		for (int i = 0; i < arrTest.length; i++) {	
+			assertEquals(arrTest[i].getNumber(),test.getArrangement()[i].getNumber());
+			
+		}
 	}
 	@Test
 	public void shortReverse() {
@@ -69,6 +95,35 @@ class TestOne {
 			
 		}
 	}
+	@Test
+	public void shortReverseTwo() {
+		Processor test=new Processor();
+		
+		Box[] arr=new Box[(int)(Math.random()*200)+5];
+		for (int i = 0; i < arr.length; i++) {
+			arr[i]=new Box(i);
+	
+		}
+
+		test.setArrangement(arr);
+		test.quickSortInversely(0,arr.length-1);
+		
+		Box[] arrTest=new Box[arr.length];
+		int j=arr.length-1;
+		for (int i = 0; i < arrTest.length; i++) {
+			arrTest[i]=new Box(j);
+			j--;
+	
+		}
+	
+		for (int i = 0; i < arrTest.length; i++) {	
+			assertEquals(arrTest[i].getNumber(),test.getArrangement()[i].getNumber());
+			
+		}
+	}
+	
+	
+	
 	
 	
 }
