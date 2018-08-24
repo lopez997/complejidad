@@ -95,7 +95,6 @@ public class Processor {
 	    }
 	
 	  public void sortPercentage(double percentage) {
-		  
 		  double k=arrangement.length*percentage;
 		  
 		  

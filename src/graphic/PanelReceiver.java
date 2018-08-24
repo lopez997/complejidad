@@ -32,7 +32,7 @@ public class PanelReceiver extends JPanel implements ActionListener{
 	public static final String GENERAR="generar";
 	public static final String ORDENAR="ordenar";
 	public static final String GENERAR_AUTO="generarauto";
-	
+
 	
 	
 	private String listenerCheck=" ";
