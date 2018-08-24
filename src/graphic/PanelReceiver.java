@@ -101,6 +101,9 @@ public class PanelReceiver extends JPanel implements ActionListener{
 		 order.addActionListener(this);
 		 order.setEnabled(false);
 		 
+		 //interval.add("Hoa ",null);
+		 
+		 
 		 setBorder(new TitledBorder("Panel Generador"));
 		 assistant.setBorder(new TitledBorder("Panel ordenamiento manual"));
 		 addItems();
