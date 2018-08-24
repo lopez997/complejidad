@@ -99,13 +99,14 @@ public class Processor {
 		  
 		  
 		  
-	  }
-
-	  
-	  
-	  
+	  }	  
+	
 	public Box[] getArrangement() {
 		return arrangement;
 	}
+	public void setArrangement(Box[] arrangement) {
+		this.arrangement=arrangement;
+	}
+	
 	
 }
