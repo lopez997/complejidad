@@ -40,7 +40,6 @@ class TestOne {
 		}
 	}
 	
-
 	@Test
 	public void testShortTwo() {
 		Processor test=new Processor();
@@ -66,6 +65,31 @@ class TestOne {
 			
 		}
 	}
+	@Test
+	public void testShortThree() {
+		Processor test=new Processor();
+		Processor testTwo=new Processor();
+		
+		Box[] arr=new Box[(int)(Math.random()*200)+5];
+		Box[] arrTest=new Box[arr.length];
+		for (int i = 0; i < arr.length; i++) {
+			long j=(long) ((Math.random()*20330)+5);
+			arr[i]=new Box(j);
+			arrTest[i]=new Box(j);
+		}
+
+		test.setArrangement(arr);
+		test.quickSort(0,arr.length-1);
+		
+		testTwo.setArrangement(arrTest);
+		testTwo.quickSort(0,arr.length-1);
+		
+		for (int i = 0; i < arrTest.length; i++) {	
+			assertEquals(testTwo.getArrangement()[i].getNumber(),test.getArrangement()[i].getNumber());
+			
+		}
+	}
+	
 	@Test
 	public void shortReverse() {
 		Processor test=new Processor();
@@ -95,6 +119,7 @@ class TestOne {
 			
 		}
 	}
+	
 	@Test
 	public void shortReverseTwo() {
 		Processor test=new Processor();
@@ -122,6 +147,32 @@ class TestOne {
 		}
 	}
 	
+	@Test
+	public void shortReverseThree() {
+
+	
+	Processor test=new Processor();
+	Processor testTwo=new Processor();
+	
+	Box[] arr=new Box[(int)(Math.random()*200)+5];
+	Box[] arrTest=new Box[arr.length];
+	for (int i = 0; i < arr.length; i++) {
+		long j=(long) ((Math.random()*20330)+5);
+		arr[i]=new Box(j);
+		arrTest[i]=new Box(j);
+	}
+
+	test.setArrangement(arr);
+	test.quickSortInversely(0,arr.length-1);
+	
+	testTwo.setArrangement(arrTest);
+	testTwo.quickSortInversely(0,arr.length-1);
+	
+	for (int i = 0; i < arrTest.length; i++) {	
+		assertEquals(testTwo.getArrangement()[i].getNumber(),test.getArrangement()[i].getNumber());
+		
+	}
+	}
 	
 	
 	
