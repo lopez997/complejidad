@@ -93,6 +93,7 @@ public class Processor {
 	        arrangement[i].setNumber(arrangement[j].getNumber());
 	        arrangement[j].setNumber(temp);
 	    }
+	  
 	
 	  public void sortPercentage(double percentage) {
 		  double k=arrangement.length*percentage;
